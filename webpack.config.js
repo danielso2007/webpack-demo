@@ -1,4 +1,6 @@
+const webpack = require('webpack');
 const path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 function createWebpackConfig() {
     let webpackConfig = {};
@@ -10,10 +12,17 @@ function createWebpackConfig() {
         path: path.resolve(__dirname, 'dist')
     };
     let ruleCSS = {test: /\.css$/, use: ['style-loader', 'css-loader']};
-    let ruleImage = {test: /\.(png|svg|jpg|gif)$/, use: ['file-loader']};
-    webpackConfig.module = {
-        rules: [ruleCSS, ruleImage]
-    };
+    let ruleImage = {test: /\.(png|svg|jpg|gif)$/, use: [{loader: 'file-loader', options: { name: '[name].[ext]', outputPath: 'images/' }}]};
+    let ruleFonts = {test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/, use: [{loader: 'file-loader', options: { name: '[name].[ext]', outputPath: 'fonts/' }}]};
+    webpackConfig.module = {rules: [ruleCSS, ruleImage, ruleFonts]};
+
+    let miniCssExtractPlugin = new MiniCssExtractPlugin({filename: "[name].css", chunkFilename: "[id].css"});
+    let webpackEnvironmentPlugin = new webpack.EnvironmentPlugin({NODE_ENV: 'development', DEBUG: false});
+    let webpackDefinePlugin = new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        'process.env.DEBUG': JSON.stringify(process.env.DEBUG)
+    });
+    webpackConfig.plugins = [miniCssExtractPlugin, webpackEnvironmentPlugin, webpackDefinePlugin];
 
     return webpackConfig;
 }
