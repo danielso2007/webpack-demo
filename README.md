@@ -30,6 +30,10 @@ O webpack-dev-server fornece um servidor da Web simples e a capacidade de usar o
 npm install --save-dev webpack-dev-server
 ```
 
+# Impedir Duplicação
+
+[optimization.splitChunks](https://webpack.js.org/plugins/split-chunks-plugin/#optimization-splitchunks)
+
 # Gerando o CHANGELOG do projeto
 
 ```shell

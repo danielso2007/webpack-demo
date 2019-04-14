@@ -49,11 +49,38 @@ function createWebpackConfig(mode) {
     webpackConfig.mode = mode;
     webpackConfig.entry = {
         app: './src/index.js',
-        print: './src/print.js'
+        print: './src/print.js',
+        another: './src/another-module.js'
     };
     webpackConfig.output = {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist')
+    };
+
+    webpackConfig.optimization = {
+        splitChunks: {
+            chunks: 'all',
+            minSize: 30000,
+            maxSize: 0,
+            minChunks: 1,
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3,
+            automaticNameDelimiter: '_',
+            name: true,
+            cacheGroups: {
+                vendors: {
+                    filename: '[name].bundle.js',
+                    test: /[\\/]node_modules[\\/]/,
+                    enforce: true,
+                    priority: -10
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true
+                }
+            }
+        }
     };
 
     webpackConfig.module = createModules();
