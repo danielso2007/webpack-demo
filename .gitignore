@@ -44,5 +44,5 @@ mobile-hub-project.zip
 dist/
 
 package-lock.json
-
+yarn.lock
 public/app.js
