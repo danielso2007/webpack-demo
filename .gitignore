@@ -43,6 +43,6 @@ mobile-hub-project.zip
 
 package-lock.json
 yarn.lock
-dist/fonts
-dist/images
-dist/*bundle.*
+dist/
+dist/*
+dist/*.*
