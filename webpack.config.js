@@ -62,6 +62,19 @@ function createWebpackConfig(mode) {
     if (mode === 'development') {
         webpackConfig.devtool = 'source-map';
     }
+    
+    webpackConfig.devServer = {
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        open: false,
+        watchContentBase: true,
+        clientLogLevel: 'info',
+        port: 8080,
+        after: function(app, server) {
+        },
+        before: function(app, server) {
+        }
+    }
 
     return webpackConfig;
 }

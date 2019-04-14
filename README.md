@@ -20,6 +20,15 @@ Um plugin popular para gerenciar isso é o mesmo, [clean-webpack-plugin](https:/
 npm install --save-dev clean-webpack-plugin
 ```
 
+# Usando o webpack-dev-server
+
+O webpack-dev-server fornece um servidor da Web simples e a capacidade de usar o recarregamento ao vivo.
+
+[webpack-dev-server](https://webpack.js.org/configuration/dev-server/)
+
+```shell
+npm install --save-dev webpack-dev-server
+```
 
 # Gerando o CHANGELOG do projeto
 
