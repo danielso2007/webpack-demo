@@ -6,9 +6,12 @@ function createWebpackConfig() {
     let webpackConfig = {};
 
     webpackConfig.mode = 'development';
-    webpackConfig.entry = './src/index.js';
+    webpackConfig.entry = {
+        app: './src/index.js',
+        print: './src/print.js'
+    };
     webpackConfig.output = {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist')
     };
     let ruleCSS = {test: /\.css$/, use: ['style-loader', 'css-loader']};

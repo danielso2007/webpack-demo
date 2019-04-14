@@ -25,7 +25,6 @@ npm-debug.log*
 .tmp/
 .versions/
 coverage/
-dist/
 node_modules/
 tmp/
 temp/
@@ -41,8 +40,9 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 cors-policy.xml
 mobile-hub-project.zip
-dist/
 
 package-lock.json
 yarn.lock
-public/app.js
+dist/fonts
+dist/images
+dist/*bundle.*
