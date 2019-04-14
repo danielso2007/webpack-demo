@@ -46,3 +46,4 @@ yarn.lock
 dist/
 dist/*
 dist/*.*
+stats.json

@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 function createModules(devMode) {
     let ruleCSS = {test: /\.(sa|sc|c)ss$/,
@@ -50,7 +51,9 @@ function createPlugins(devMode) {
             'googlebot': 'index,follow'
         }
     });
+    let bundleAnalyzerPlugin = new BundleAnalyzerPlugin();
     return [
+        bundleAnalyzerPlugin,
         cleanWebpackPlugin,
         miniCssExtractPlugin, 
         webpackEnvironmentPlugin, 
@@ -112,6 +115,7 @@ function createWebpackConfig(devMode) {
     };
     webpackConfig.output = {
         filename: devMode ? '[name].bundle.js' : '[name].[hash].bundle.js',
+        chunkFilename: devMode ? '[name].bundle.js' : '[name].[hash].bundle.js',
         path: path.resolve(__dirname, 'dist')
     };
 

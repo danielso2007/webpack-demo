@@ -34,6 +34,16 @@ npm install --save-dev webpack-dev-server
 
 [optimization.splitChunks](https://webpack.js.org/plugins/split-chunks-plugin/#optimization-splitchunks)
 
+# Webpack Bundle Analyzer
+
+Visualize o tamanho dos arquivos de saída do Webpack com um mapa de árvore interativo com zoom.
+
+[webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
+
+```shell
+npm install --save-dev webpack-bundle-analyzer
+```
+
 # Gerando o CHANGELOG do projeto
 
 ```shell
