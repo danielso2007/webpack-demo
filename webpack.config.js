@@ -31,8 +31,8 @@ function createModules(devMode) {
 function createPlugins(devMode) {
     let cleanWebpackPlugin = new CleanWebpackPlugin();
     let miniCssExtractPlugin = new MiniCssExtractPlugin({
-        filename: devMode ? '[name].css' : '[name].[hash].css',
-        chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+        filename: devMode ? '[name].css' : '[name].[contenthash].css',
+        chunkFilename: devMode ? '[id].css' : '[id].[contenthash].css',
     });
     let webpackEnvironmentPlugin = new webpack.EnvironmentPlugin({
         NODE_ENV: 'development', 
@@ -52,8 +52,9 @@ function createPlugins(devMode) {
         }
     });
     let bundleAnalyzerPlugin = new BundleAnalyzerPlugin();
+    let hashedModuleIdsPlugin = new webpack.HashedModuleIdsPlugin()
     return [
-        bundleAnalyzerPlugin,
+        hashedModuleIdsPlugin,
         cleanWebpackPlugin,
         miniCssExtractPlugin, 
         webpackEnvironmentPlugin, 
@@ -90,7 +91,8 @@ function createOptimization(devMode) {
             name: true,
             cacheGroups: {
                 vendors: {
-                    filename: devMode ? '[name].bundle.js' : '[name].[hash].bundle.js',
+                    name: 'vendors',
+                    filename: devMode ? '[name].bundle.js' : '[name].[contenthash].bundle.js',
                     test: /[\\/]node_modules[\\/]/,
                     enforce: true,
                     priority: -10
@@ -114,8 +116,8 @@ function createWebpackConfig(devMode) {
         another: './src/another-module.js'
     };
     webpackConfig.output = {
-        filename: devMode ? '[name].bundle.js' : '[name].[hash].bundle.js',
-        chunkFilename: devMode ? '[name].bundle.js' : '[name].[hash].bundle.js',
+        filename: devMode ? '[name].bundle.js' : '[name].[contenthash].bundle.js',
+        chunkFilename: devMode ? '[name].bundle.js' : '[name].[contenthash].bundle.js',
         path: path.resolve(__dirname, 'dist')
     };
 
